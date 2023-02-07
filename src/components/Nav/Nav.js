@@ -4,6 +4,12 @@ import './Nav.scss';
 
 function Nav() {
   const [token, setToken] = useState();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken('');
+  };
+
   return (
     <nav className="nav">
       <Link to="/">
@@ -13,17 +19,21 @@ function Nav() {
         {token ? (
           <>
             <li>
-              <Link to="">로그아웃</Link>
+              <Link to="/" onClick={logout}>
+                로그아웃
+              </Link>
             </li>
-            <li>장바구니</li>
+            <li>
+              <Link to="/">장바구니</Link>
+            </li>
           </>
         ) : (
           <>
             <li>
-              <Link to="">로그인</Link>
+              <Link to="/">로그인</Link>
             </li>
             <li>
-              <Link to="">회원가입</Link>
+              <Link to="/">회원가입</Link>
             </li>
           </>
         )}
