@@ -1,0 +1,67 @@
+@import '/src/styles/variables.scss';
+
+.footer {
+  width: 100%;
+  height: 20%;
+  background-color: $black;
+  color: white;
+  position: fixed; // temporary
+  bottom: 0;
+
+  .footerColumn {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    background-color: transparent;
+    // height: 50%;
+
+    .customerService {
+      background-color: transparent;
+      .social {
+        margin: 10px 0px 10px 0px;
+      }
+
+      .detail {
+        background: none;
+        background-color: $black;
+
+        span {
+          color: white;
+          margin: 10px 10px 20px 0px;
+        }
+
+        button {
+          color: white;
+          background: none;
+          border: 1px solid white;
+        }
+      }
+    }
+  }
+
+  .footerUpper {
+    height: 200px;
+  }
+  .logo {
+    width: 35px;
+  }
+  .snsLogo {
+    width: 35px;
+  }
+
+  .terms {
+    padding: 0px 40px;
+    .information {
+      background: none;
+    }
+
+    .information span,
+    p {
+      background: none;
+      margin-right: 10px;
+      color: white;
+      bottom: 0;
+    }
+  }
+}
