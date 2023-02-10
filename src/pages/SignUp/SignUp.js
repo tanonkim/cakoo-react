@@ -1,4 +1,6 @@
-function SignUp(params) {
+import './SignUp.scss';
+
+function SignUp() {
   return <div></div>;
 }
 
