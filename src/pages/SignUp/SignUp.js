@@ -1,7 +1,34 @@
+import { useState } from 'react';
 import './SignUp.scss';
-import TextBox from './TextBos';
+import TextBox from './TextBox';
 
 function SignUp() {
+  const emailRegex =
+    /^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+  const [signUpInfo, setSignUpInfo] = useState({
+    id: '',
+    password: '',
+    passwordCheck: '',
+    name: '',
+    phone1: '',
+    phone2: '',
+    phone3: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
+  });
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+    setSignUpInfo({ ...signUpInfo, [name]: value });
+  };
+
   return (
     <main className="signup">
       <header className="signUpHeader">
@@ -15,9 +42,14 @@ function SignUp() {
             placeholder="예) cakoo@cakoo.com"
             className="email"
             name="id"
-            // onChange={}
+            onChange={handleChange}
           >
-            <button>O</button>
+            <button
+              className={emailRegex.test(signUpInfo.id) ? 'buttonOn' : 'button'}
+              disabled
+            >
+              O
+            </button>
           </TextBox>
           <TextBox
             label="비밀번호"
@@ -25,16 +57,28 @@ function SignUp() {
             placeholder="영문 대소문자, 숫자, 특수문자를 포함하여 8자리 이상"
             className="password"
             name="password"
-            // onChange={}
+            onChange={handleChange}
           ></TextBox>
           <TextBox
             label="비밀번호 확인"
             type="password"
             placeholder="비밀번호를 한번 더 입력해주세요"
             className="passwordCheck"
-            // onChange={}
+            name="passwordCheck"
+            onChange={handleChange}
           >
-            <button>O</button>
+            <button
+              className={
+                signUpInfo.password === signUpInfo.passwordCheck &&
+                signUpInfo.password.length >= 8 &&
+                passwordRegex.test(signUpInfo.password)
+                  ? 'buttonOn'
+                  : 'button'
+              }
+              disabled
+            >
+              O
+            </button>{' '}
           </TextBox>
           <TextBox
             label="이름"
@@ -54,6 +98,7 @@ function SignUp() {
                 className="phone1"
                 name="phone1"
                 maxLength="3"
+                onChange={handleChange}
               />
               <input
                 type="text"
@@ -61,6 +106,7 @@ function SignUp() {
                 className="phone2"
                 name="phone2"
                 maxLength="4"
+                onChange={handleChange}
               />
               <input
                 type="text"
@@ -68,9 +114,22 @@ function SignUp() {
                 className="phone3"
                 name="phone3"
                 maxLength="4"
+                onChange={handleChange}
               />
             </div>
-            <button>O</button>
+            <button
+              className={
+                signUpInfo.phone1.length +
+                  signUpInfo.phone2.length +
+                  signUpInfo.phone3.length >=
+                11
+                  ? 'buttonOn'
+                  : 'button'
+              }
+              disabled
+            >
+              O
+            </button>
           </div>
           <div className="row">
             <label>생년월일</label>
