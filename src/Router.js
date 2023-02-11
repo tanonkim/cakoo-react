@@ -8,7 +8,7 @@ function Router() {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import API from '../../config';
 import './SignUp.scss';
 import TextBox from './TextBox';
 
@@ -24,9 +25,37 @@ function SignUp() {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
     setSignUpInfo({ ...signUpInfo, [name]: value });
+  };
+
+  const goTosignUp = () => {
+    fetch(API.signup, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email: signUpInfo.id,
+        password: signUpInfo.password,
+        name: signUpInfo.name,
+        phone_number: signUpInfo.phone1 + signUpInfo.phone2 + signUpInfo.phone3,
+        birthdate: `${signUpInfo.birthYear}-${signUpInfo.birthMonth}-${signUpInfo.birthDay}`,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'User Created!') {
+          // navigate('/signup-success');
+        } else if (result.message === 'Invalid Email!') {
+          alert('이메일 조건에 밎지 않습니다!');
+        } else if (result.message === 'Invalid Password!') {
+          alert('비밀번호 조건에 맞지 않습니다!');
+        } else if (result.message === 'Email Already Exists!') {
+          alert('중복된 이메일입니다!');
+        } else if (result.message === 'KEY_ERROR') {
+          alert('정보를 모두 입력해주세요!');
+        }
+      });
   };
 
   return (
@@ -86,7 +115,7 @@ function SignUp() {
             placeholder="이름을 입력해주세요"
             className="name"
             name="name"
-            // onChange={}
+            onChange={handleChange}
           ></TextBox>
 
           <div className="row">
@@ -138,9 +167,26 @@ function SignUp() {
                 type="text"
                 placeholder="년도) 2023"
                 className="birthYear"
+                maxLength="4"
+                name="birthYear"
+                onChange={handleChange}
               />
-              <input type="text" placeholder="월" className="birthMonth" />
-              <input type="text" placeholder="일" className="birthDay" />
+              <input
+                type="text"
+                placeholder="월"
+                className="birthMonth"
+                maxLength="2"
+                name="birthMonth"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="일"
+                className="birthDay"
+                maxLength="2"
+                name="birthDay"
+                onChange={handleChange}
+              />
             </div>
           </div>
           <hr />
@@ -196,7 +242,9 @@ function SignUp() {
             </a>
           </div>
           <div className="signUpBtn">
-            <button type="button">회원가입</button>
+            <button type="button" onClick={goTosignUp}>
+              회원가입
+            </button>
           </div>
         </form>
       </fieldset>
