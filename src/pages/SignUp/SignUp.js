@@ -1,4 +1,5 @@
 import './SignUp.scss';
+import TextBox from './TextBos';
 
 function SignUp() {
   return (
@@ -8,43 +9,42 @@ function SignUp() {
       </header>
       <fieldset>
         <form className="signUpForm">
-          <div className="row">
-            <label>이메일(아이디)</label>
-            <input
-              type="text"
-              placeholder="예) cakoo@cakoo.com"
-              className="email"
-              name="id"
-            />
+          <TextBox
+            label="이메일(아이디)"
+            type="text"
+            placeholder="예) cakoo@cakoo.com"
+            className="email"
+            name="id"
+            // onChange={}
+          >
             <button>O</button>
-          </div>
-          <div className="row">
-            <label>비밀번호</label>
-            <input
-              type="password"
-              placeholder="영문 대소문자, 숫자, 특수문자를 포함하여 8자리 이상"
-              className="password"
-              name="password"
-            />
-          </div>
-          <div className="row">
-            <label>비밀번호 확인</label>
-            <input
-              type="password"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-              className="passwordCheck"
-            />
+          </TextBox>
+          <TextBox
+            label="비밀번호"
+            type="password"
+            placeholder="영문 대소문자, 숫자, 특수문자를 포함하여 8자리 이상"
+            className="password"
+            name="password"
+            // onChange={}
+          ></TextBox>
+          <TextBox
+            label="비밀번호 확인"
+            type="password"
+            placeholder="비밀번호를 한번 더 입력해주세요"
+            className="passwordCheck"
+            // onChange={}
+          >
             <button>O</button>
-          </div>
-          <div className="row">
-            <label>이름</label>
-            <input
-              type="text"
-              placeholder="이름을 입력해주세요."
-              className="name"
-              name="name"
-            />
-          </div>
+          </TextBox>
+          <TextBox
+            label="이름"
+            type="text"
+            placeholder="이름을 입력해주세요"
+            className="name"
+            name="name"
+            // onChange={}
+          ></TextBox>
+
           <div className="row">
             <label>휴대폰 번호</label>
             <div className="phone">
