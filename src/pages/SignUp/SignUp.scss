@@ -44,7 +44,7 @@
     }
 
     input:focus {
-      border-color: #f9cc33;
+      outline-color: $yellow;
     }
 
     input[type='text'],
