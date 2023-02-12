@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import API from '../../config';
 import './SignIn.scss';
 
 function SignIn() {
@@ -17,7 +18,6 @@ function SignIn() {
   const handleChange = e => {
     const { name, value } = e.target;
     setSignInInfo({ ...signInInfo, [name]: value });
-    console.log(name, value);
   };
 
   const isValid = () => {
@@ -28,9 +28,29 @@ function SignIn() {
     ) {
       return true;
     } else {
-      console.log('fail');
       return false;
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleFetch = () => {
+    fetch(API.signin, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: signInInfo.email,
+        password: signInInfo.password,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.access_token) {
+          localStorage.setItem('token', result.access_token);
+          navigate('/');
+        } else {
+          alert('아이디 또는 비밀번호를 확인해주세요!');
+        }
+      });
   };
 
   return (
@@ -59,6 +79,7 @@ function SignIn() {
         type="button"
         className={isValid() ? 'loginButtonOn' : 'loginButton'}
         disabled={!isValid()}
+        onClick={handleFetch}
       >
         로그인
       </button>
