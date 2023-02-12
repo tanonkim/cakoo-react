@@ -1,7 +1,19 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SignIn.scss';
 
 function SignIn() {
+  const [signInInfo, setSignInInfo] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setSignInInfo({ ...signInInfo, [name]: value });
+    console.log(name, value);
+  };
+
   return (
     <div className="topBox">
       <div className="title">로그인</div>
@@ -10,13 +22,13 @@ function SignIn() {
           type="text"
           placeholder="아이디 (이메일)"
           name="email"
-          onChange={''}
+          onChange={handleChange}
         ></input>
         <input
           type="password"
           placeholder="비밀번호"
           name="password"
-          onChange={''}
+          onChange={handleChange}
         ></input>
       </div>
       <div className="button">
