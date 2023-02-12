@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import API from '../../config';
 import './SignUp.scss';
 import TextBox from './TextBox';
@@ -23,6 +24,8 @@ function SignUp() {
     birthDay: '',
   });
 
+  const navigate = useNavigate();
+
   const handleChange = e => {
     const { name, value } = e.target;
     setSignUpInfo({ ...signUpInfo, [name]: value });
@@ -45,7 +48,7 @@ function SignUp() {
       .then(res => res.json())
       .then(result => {
         if (result.message === 'User Created!') {
-          // navigate('/signup-success');
+          navigate('/signup-success');
         } else if (result.message === 'Invalid Email!') {
           alert('이메일 조건에 밎지 않습니다!');
         } else if (result.message === 'Invalid Password!') {
@@ -107,7 +110,7 @@ function SignUp() {
               disabled
             >
               O
-            </button>{' '}
+            </button>
           </TextBox>
           <TextBox
             label="이름"

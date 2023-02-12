@@ -1,5 +1,3 @@
-import './TextBox.scss';
-
 function TextBox({
   label,
   type,
