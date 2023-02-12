@@ -30,7 +30,7 @@ function Nav() {
         ) : (
           <>
             <li>
-              <Link to="/">로그인</Link>
+              <Link to="/signin">로그인</Link>
             </li>
             <li>
               <Link to="/signup">회원가입</Link>
