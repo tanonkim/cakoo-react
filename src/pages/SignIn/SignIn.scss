@@ -1,0 +1,65 @@
+@import '/src/styles/variables.scss';
+
+.topBox {
+  width: 100%;
+  height: 300px;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font: 800;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #ececec;
+  }
+
+  input:focus {
+    outline-color: $yellow;
+  }
+
+  input::placeholder {
+    padding-left: 10px;
+  }
+}
+
+.inputBox input {
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-bottom: 20px;
+}
+
+.loginButton {
+  width: 300px;
+  height: 40px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.loginButtonOn {
+  background-color: $yellow;
+  width: 300px;
+  height: 40px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.etc span {
+  padding: 10px 10px 10px 10px;
+}

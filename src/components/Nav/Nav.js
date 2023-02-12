@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.scss';
 
@@ -9,6 +9,10 @@ function Nav() {
     localStorage.removeItem('token');
     setToken('');
   };
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
 
   return (
     <nav className="nav">
@@ -30,7 +34,7 @@ function Nav() {
         ) : (
           <>
             <li>
-              <Link to="/">로그인</Link>
+              <Link to="/signin">로그인</Link>
             </li>
             <li>
               <Link to="/signup">회원가입</Link>
