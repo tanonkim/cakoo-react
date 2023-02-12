@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
-import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
+import SignIn from './pages/SignIn/SignIn';
 import SignupSuccess from './pages/SignUpSuccess/SignUpSuccess';
 
 function Router() {
