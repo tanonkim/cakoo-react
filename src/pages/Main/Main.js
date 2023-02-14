@@ -1,6 +1,29 @@
+import { useEffect, useState } from 'react';
+import API from '../../config';
 import './Main.scss';
 
 function Main() {
+  const [productList, setProductList] = useState([]);
+  const baseUri = API.products;
+
+  // const {
+  //   id,
+  //   name,
+  //   price,
+  //   discount_rate,
+  //   discount_price,
+  //   description,
+  //   sizes,
+  //   thumbnail,
+  // } = data;
+
+  useEffect(() => {
+    fetch(baseUri)
+      .then(res => res.json())
+      .then(result => console.log(result));
+  });
+  // console.log(data);
+
   return (
     <main>
       <div className="banner">
@@ -11,16 +34,20 @@ function Main() {
       <div className="filterBar">
         <form className="filterForm">
           <label>
-            <input type="checkbox" name="mini"></input>mini
+            <input type="checkbox" name="mini" />
+            mini
           </label>
           <label>
-            <input type="checkbox" name="one"></input>1호
+            <input type="checkbox" name="one" />
+            1호
           </label>
           <label>
-            <input type="checkbox" name="two"></input>2호
+            <input type="checkbox" name="two" />
+            2호
           </label>
           <label>
-            <input type="checkbox" name="three"></input>3호
+            <input type="checkbox" name="three" />
+            3호
           </label>
         </form>
         <div>
@@ -30,6 +57,8 @@ function Main() {
           <button type="button">오래된 순</button>
         </div>
       </div>
+      <div className="productContainer" />
+      <button className="leadMore">더보기</button>
     </main>
   );
 }
