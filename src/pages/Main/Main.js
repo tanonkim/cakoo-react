@@ -10,6 +10,7 @@ import Product from './Product/Product';
 function Main() {
   const [productList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
+  // const [filterSize, setFilterSize] = useState([]);
 
   const baseUri = API.products;
 
@@ -33,19 +34,19 @@ function Main() {
       <div className="filterBar">
         <form className="filterForm">
           <label>
-            <input type="checkbox" name="mini" onChange={handleCheck} />
+            <input type="checkbox" name="1" onChange={handleCheck} />
             mini
           </label>
           <label>
-            <input type="checkbox" name="one" onChange={handleCheck} />
+            <input type="checkbox" name="2" onChange={handleCheck} />
             1호
           </label>
           <label>
-            <input type="checkbox" name="two" onChange={handleCheck} />
+            <input type="checkbox" name="3" onChange={handleCheck} />
             2호
           </label>
           <label>
-            <input type="checkbox" name="three" onChange={handleCheck} />
+            <input type="checkbox" name="4" onChange={handleCheck} />
             3호
           </label>
         </form>
