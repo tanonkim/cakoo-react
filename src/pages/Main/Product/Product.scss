@@ -1,0 +1,21 @@
+@import '/src/styles/variables.scss';
+
+.product {
+  display: grid;
+  margin: 0px 10px 30px 10px;
+}
+
+.thumbnail {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 15px;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1, 1.1);
+  transition: all 0.4s;
+}
+
+.filterBar {
+  margin-left: 100px;
+}
