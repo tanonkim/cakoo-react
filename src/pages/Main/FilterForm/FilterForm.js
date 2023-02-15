@@ -1,23 +1,27 @@
 import './FilterForm.scss';
 
 function FilterForm() {
+  function handleCheck(event) {
+    const sizeName = event.target.name;
+  }
+
   return (
     <div className="filterBar">
       <form className="filterForm">
         <label>
-          <input type="checkbox" name="mini" />
+          <input type="checkbox" name="mini" onChange={handleCheck} />
           mini
         </label>
         <label>
-          <input type="checkbox" name="one" />
+          <input type="checkbox" name="one" onChange={handleCheck} />
           1호
         </label>
         <label>
-          <input type="checkbox" name="two" />
+          <input type="checkbox" name="two" onChange={handleCheck} />
           2호
         </label>
         <label>
-          <input type="checkbox" name="three" />
+          <input type="checkbox" name="three" onChange={handleCheck} />
           3호
         </label>
       </form>

@@ -18,11 +18,11 @@ function Main() {
     fetch(`${baseUri}?offset=0&limit=${(offset + 1) * 8}`)
       .then(res => res.json())
       .then(result => setProductList(result.lists));
-  }, []);
+  }, [offset]);
 
-  // function leadMore() {
-  //   setOffset(prev => console.log(prev));
-  // }
+  function leadMore() {
+    setOffset(prev => prev + 1);
+  }
 
   return (
     <main>
@@ -34,7 +34,7 @@ function Main() {
         ))}
       </div>
       <div className="buttonBox">
-        <button className="leadMore" onClick="">
+        <button className="leadMore" onClick={leadMore}>
           더보기
         </button>
       </div>
