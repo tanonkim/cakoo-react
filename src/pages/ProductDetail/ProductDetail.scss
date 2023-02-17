@@ -1,1 +1,105 @@
 @import '/src/styles/variables.scss';
+
+.productBox {
+  .topBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    .img {
+      width: 300px;
+
+      img {
+        margin-top: 20px;
+        width: 500px;
+        height: 400px;
+      }
+    }
+
+    .goCart {
+      width: 400px;
+      padding-top: 40px;
+    }
+
+    .description {
+      font-weight: 700;
+      font-size: 30px;
+      margin-bottom: 40px;
+
+    }
+
+    .productInfo {
+      .discountRate {
+        color: red;
+        font-weight: 600;
+        margin-right: 10px;
+        margin-bottom: 100px;
+      }
+
+      .costPrice {
+        margin-left: 10px;
+        font-weight: 800;
+        font-size: 20px;
+      }
+
+      .deliveryFee > span {
+        font-size: 20px;
+      }
+
+      .quantity {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        margin-bottom: 20px;
+
+        .countBtn {
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          color: gray;
+        }
+
+        .minusBtn {
+          margin-right: 10px;
+        }
+
+        .plusBtn {
+          margin-left: 10px;
+        }
+
+        .option {
+          border: none;
+          background-color: gainsboro;
+          font-size: 15px;
+          border-radius: 5px;
+          width: 300px;
+          height: 40px;
+          border: none;
+        }
+      }
+
+      .totalPrice {
+        font-size: 20px;
+        text-align: end;
+        margin: 20px 0px 10px 0px;
+      }
+
+      .cartButton {
+        margin-top: 20px;
+        border: none;
+        background-color: $yellow;
+        font-size: 15px;
+        border-radius: 5px;
+        width: 100%;
+        height: 40px;
+        border: none;
+      }
+
+    }
+  }
+
+  hr {
+    margin-bottom: 30px;
+  }
+}

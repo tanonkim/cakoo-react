@@ -1,19 +1,22 @@
+import { useState } from 'react';
+import './ProductDetail.scss';
+
 function ProductDetail() {
+  // const [product, setProduct] = useState({});
+
   return (
     <main className="productBox">
       <div className="topBox">
         <div className="img">
           <div> `Home > 케이크 > name`</div>
           <img
-            src="temp-url"
+            src="/images/strawberry_biscuit_cake.jpeg"
             alt="상품 이미지 크게 보기"
             className="mainImage"
           />
         </div>
         <div className="goCart">
           <p className="description">testDescription</p>
-
-          <h1 className="productName">80% 10000원 2000원</h1>
 
           <div className="productInfo">
             <span className="discountRate">20%</span>
@@ -27,11 +30,13 @@ function ProductDetail() {
             <form>
               <div className="quantity">
                 <span className="label">수량</span>
-                <button>-</button>
-                <span>0</span>
-                <button>+</button>
+                <span>
+                  <button className="countBtn minusBtn">-</button>
+                  <span>0</span>
+                  <button className="countBtn plusBtn">+</button>
+                </span>
               </div>
-              <div className="size">
+              <div className="quantity">
                 <span>사이즈</span>
                 <div>
                   <button className="option" type="button">
@@ -39,6 +44,7 @@ function ProductDetail() {
                   </button>
                 </div>
               </div>
+              <div className="totalPrice">총 주문금액 : 1000원</div>
               <button className="cartButton">장바구니</button>
             </form>
           </div>
