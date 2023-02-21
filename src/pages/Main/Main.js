@@ -10,23 +10,34 @@ import Product from './Product/Product';
 function Main() {
   const [productList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
-  // const [filterSize, setFilterSize] = useState([]);
+  const [filterSize, setFilterSize] = useState([]);
 
   const baseUri = API.products;
 
   useEffect(() => {
-    fetch(`${baseUri}?offset=0&limit=${(offset + 1) * 8}`)
+    fetch(
+      `${baseUri}?size=${filterSize.join()}&offset=0&limit=${(offset + 1) * 8}`
+    )
       .then(res => res.json())
       .then(result => setProductList(result.lists));
-  }, [offset]);
+  }, [offset, filterSize]);
 
   function leadMore() {
     setOffset(prev => prev + 1);
   }
 
   function handleCheck(event) {
-    console.log(event);
+    const size = event.target.name;
+    if (filterSize.includes(size)) {
+      setFilterSize(filterSize.filter(element => element !== size));
+    } else {
+      setFilterSize([...filterSize, size]);
+    }
   }
+
+  // useEffect(() => {
+  //   console.log(filterSize.join());
+  // });
 
   return (
     <main>
