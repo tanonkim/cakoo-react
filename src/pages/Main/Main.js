@@ -12,8 +12,12 @@ function Main() {
 
   const baseUri = API.products;
   const uri = sort
-    ? `${baseUri}?sort=${sort}&size=${filterSize.join()}`
-    : `${baseUri}?&size=${filterSize.join()}`;
+    ? filterSize.length
+      ? `${baseUri}?sort=${sort}&size=${filterSize.join()}`
+      : `${baseUri}?sort=${sort}`
+    : filterSize.length
+    ? `${baseUri}?&size=${filterSize.join()}`
+    : `${baseUri}?`;
 
   useEffect(() => {
     fetch(`${uri}&offset=0&limit=${(offset + 1) * 8}`)
