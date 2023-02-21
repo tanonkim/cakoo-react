@@ -4,9 +4,6 @@ import './Main.scss';
 import Banner from './Banner/Banner';
 import Product from './Product/Product';
 
-// http://0.0.0.0:8000/products?sort=recent&limit=8&offset=10
-// products: `${BASE_URL}/products`,
-
 function Main() {
   const [productList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -34,10 +31,6 @@ function Main() {
       setFilterSize([...filterSize, size]);
     }
   }
-
-  // useEffect(() => {
-  //   console.log(filterSize.join());
-  // });
 
   return (
     <main>
