@@ -4,28 +4,38 @@ import './Main.scss';
 import Banner from './Banner/Banner';
 import Product from './Product/Product';
 
-// http://0.0.0.0:8000/products?sort=recent&limit=8&offset=10
-// products: `${BASE_URL}/products`,
-
 function Main() {
   const [productList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
-  // const [filterSize, setFilterSize] = useState([]);
+  const [filterSize, setFilterSize] = useState([]);
+  const [sort, setSort] = useState('');
 
   const baseUri = API.products;
+  const uri = sort
+    ? filterSize.length
+      ? `${baseUri}?sort=${sort}&size=${filterSize.join()}`
+      : `${baseUri}?sort=${sort}`
+    : filterSize.length
+    ? `${baseUri}?&size=${filterSize.join()}`
+    : `${baseUri}?`;
 
   useEffect(() => {
-    fetch(`${baseUri}?offset=0&limit=${(offset + 1) * 8}`)
+    fetch(`${uri}&offset=0&limit=${(offset + 1) * 8}`)
       .then(res => res.json())
       .then(result => setProductList(result.lists));
-  }, [offset]);
+  }, [offset, filterSize, sort]);
 
   function leadMore() {
     setOffset(prev => prev + 1);
   }
 
   function handleCheck(event) {
-    console.log(event);
+    const size = event.target.name;
+    if (filterSize.includes(size)) {
+      setFilterSize(filterSize.filter(element => element !== size));
+    } else {
+      setFilterSize([...filterSize, size]);
+    }
   }
 
   return (
@@ -51,10 +61,18 @@ function Main() {
           </label>
         </form>
         <div>
-          <button type="button">가격 높은순</button>
-          <button type="button">가격 낮은순</button>
-          <button type="button">신상품</button>
-          <button type="button">오래된 순</button>
+          <button type="button" onClick={() => setSort('expensive')}>
+            가격 높은순
+          </button>
+          <button type="button" onClick={() => setSort('cheap')}>
+            가격 낮은순
+          </button>
+          <button type="button" onClick={() => setSort('recent')}>
+            신상품
+          </button>
+          <button type="button" onClick={() => setSort('old')}>
+            오래된 순
+          </button>
         </div>
       </div>
       <div className="productContainer">
