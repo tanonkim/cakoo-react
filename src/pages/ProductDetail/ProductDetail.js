@@ -4,7 +4,15 @@ import API from '../../config';
 import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({
+    base_price: 0,
+    description: '',
+    discount_rate: 0,
+    information_images: [],
+    name: '',
+    product_images: '',
+    sizes: [],
+  });
 
   const params = useParams();
   const { id } = params; // params.id
