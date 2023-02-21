@@ -14,6 +14,7 @@ function ProductDetail() {
     sizes: [],
   });
   const [count, setCount] = useState(1);
+  const [toggle, setToggle] = useState(false);
 
   const params = useParams();
   const { id } = params; // params.id
@@ -54,6 +55,10 @@ function ProductDetail() {
         return prevState;
       }
     });
+  };
+
+  const handleSize = () => {
+    setToggle(!toggle);
   };
 
   return (
@@ -104,9 +109,21 @@ function ProductDetail() {
               <div className="quantity">
                 <span>사이즈</span>
                 <div>
-                  <button className="option" type="button">
+                  <button className="option" type="button" onClick={handleSize}>
                     사이즈를 선택해주세요.
                   </button>
+                  <div className={toggle ? 'show' : 'hide'}>
+                    {sizes.map(({ size_id, size, price }) => (
+                      <button
+                        key={size_id}
+                        id={size_id}
+                        className="sizeOptions"
+                        type="button"
+                      >{`${size} : ${parseInt(
+                        price - price * discount_rate
+                      ).toLocaleString('ko-KR')}원`}</button>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="totalPrice">총 주문금액 : 1000원</div>
