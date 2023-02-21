@@ -8,16 +8,18 @@ function Main() {
   const [productList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
   const [filterSize, setFilterSize] = useState([]);
+  const [sort, setSort] = useState('');
 
   const baseUri = API.products;
+  const uri = sort
+    ? `${baseUri}?sort=${sort}&size=${filterSize.join()}`
+    : `${baseUri}?&size=${filterSize.join()}`;
 
   useEffect(() => {
-    fetch(
-      `${baseUri}?size=${filterSize.join()}&offset=0&limit=${(offset + 1) * 8}`
-    )
+    fetch(`${uri}&offset=0&limit=${(offset + 1) * 8}`)
       .then(res => res.json())
       .then(result => setProductList(result.lists));
-  }, [offset, filterSize]);
+  }, [offset, filterSize, sort]);
 
   function leadMore() {
     setOffset(prev => prev + 1);
@@ -55,10 +57,18 @@ function Main() {
           </label>
         </form>
         <div>
-          <button type="button">가격 높은순</button>
-          <button type="button">가격 낮은순</button>
-          <button type="button">신상품</button>
-          <button type="button">오래된 순</button>
+          <button type="button" onClick={() => setSort('expensive')}>
+            가격 높은순
+          </button>
+          <button type="button" onClick={() => setSort('cheap')}>
+            가격 낮은순
+          </button>
+          <button type="button" onClick={() => setSort('recent')}>
+            신상품
+          </button>
+          <button type="button" onClick={() => setSort('old')}>
+            오래된 순
+          </button>
         </div>
       </div>
       <div className="productContainer">
