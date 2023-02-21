@@ -13,6 +13,7 @@ function ProductDetail() {
     product_images: '',
     sizes: [],
   });
+  const [count, setCount] = useState(1);
 
   const params = useParams();
   const { id } = params; // params.id
@@ -22,7 +23,6 @@ function ProductDetail() {
       .then(res => res.json())
       .then(result => {
         setProduct(result.message);
-        // console.log(result);
       });
   }, []);
 
@@ -35,6 +35,26 @@ function ProductDetail() {
     product_images,
     sizes,
   } = product;
+
+  const countDown = () => {
+    setCount(prevState => {
+      if (prevState > 1) {
+        return prevState - 1;
+      } else {
+        return prevState;
+      }
+    });
+  };
+
+  const countUp = () => {
+    setCount(prevState => {
+      if (prevState < 10) {
+        return prevState + 1;
+      } else {
+        return prevState;
+      }
+    });
+  };
 
   return (
     <main className="productBox">
@@ -51,9 +71,18 @@ function ProductDetail() {
           <p className="description">{description}</p>
 
           <div className="productInfo">
-            <span className="discountRate">{discount_rate * 100}%</span>
-            <del className="netPrice">10000원</del>
-            <span className="costPrice">8000원</span>
+            <span className="discountRate">
+              {Math.round(discount_rate * 100)}%
+            </span>
+            <del className="netPrice">
+              {parseInt(base_price).toLocaleString('ko-KR')}
+            </del>
+            <span className="costPrice">
+              {parseInt(base_price - base_price * discount_rate).toLocaleString(
+                'ko-KR'
+              )}
+              원
+            </span>
             <hr />
             <p className="deliveryFee">
               3만원 이상 구매 시, <span>무료배송!</span>
@@ -63,9 +92,13 @@ function ProductDetail() {
               <div className="quantity">
                 <span className="label">수량</span>
                 <span>
-                  <button className="countBtn minusBtn">-</button>
-                  <span>0</span>
-                  <button className="countBtn plusBtn">+</button>
+                  <button className="countBtn minusBtn" onClick={countDown}>
+                    -
+                  </button>
+                  <span>{count}</span>
+                  <button className="countBtn plusBtn" onClick={countUp}>
+                    +
+                  </button>
                 </span>
               </div>
               <div className="quantity">
