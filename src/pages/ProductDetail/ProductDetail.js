@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './ProductDetail.scss';
 import API from '../../config';
 import { useParams } from 'react-router-dom';
+import * as events from 'events';
 
 function ProductDetail() {
   const [product, setProduct] = useState({
@@ -15,6 +16,7 @@ function ProductDetail() {
   });
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
+  const [addedProduct, setAddedProduct] = useState([]);
 
   const params = useParams();
   const { id } = params; // params.id
@@ -61,6 +63,24 @@ function ProductDetail() {
     setToggle(!toggle);
   };
 
+  const changeSize = event => {
+    const priceBySize = event.target.innerText.split(':');
+    const sizeId = event.target.id;
+    const size = priceBySize[0];
+    const price = priceBySize[1].split('원')[0];
+    console.log(price);
+
+    if (addedProduct.map(product => product.size === size).includes(true)) {
+      alert('이미 담은 상품입니다.');
+    } else {
+      setAddedProduct([
+        ...addedProduct,
+        { sizeId: sizeId, size: size, price: price },
+      ]);
+    }
+    setToggle(!toggle);
+  };
+
   return (
     <main className="productBox">
       <div className="topBox">
@@ -74,7 +94,6 @@ function ProductDetail() {
         </div>
         <div className="goCart">
           <p className="description">{description}</p>
-
           <div className="productInfo">
             <span className="discountRate">
               {Math.round(discount_rate * 100)}%
@@ -112,7 +131,10 @@ function ProductDetail() {
                   <button className="option" type="button" onClick={handleSize}>
                     사이즈를 선택해주세요.
                   </button>
-                  <div className={toggle ? 'show' : 'hide'}>
+                  <div
+                    className={toggle ? 'show' : 'hide'}
+                    onClick={changeSize}
+                  >
                     {sizes.map(({ size_id, size, price }) => (
                       <button
                         key={size_id}
