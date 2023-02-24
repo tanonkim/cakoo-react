@@ -29,9 +29,7 @@ function ProductDetail() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(addedProduct);
-  }, [addedProduct]);
+  useEffect(() => {}, [addedProduct]);
 
   const {
     base_price,
@@ -83,6 +81,20 @@ function ProductDetail() {
     }
     setToggle(!toggle);
     setCount(1);
+  };
+
+  const changeQuantity = (prevSizeId, prevSize, prevPrice, prevQuantity) => {
+    const newElement = {
+      sizeId: prevSizeId,
+      size: prevSize,
+      price: prevPrice,
+      quantity: prevQuantity,
+    };
+
+    const targetIndex = addedProduct.findIndex(
+      element => element.size === prevSize
+    );
+    console.log('targetIndex : ' + targetIndex);
   };
 
   return (
@@ -160,7 +172,12 @@ function ProductDetail() {
               </div>
               <div>
                 {addedProduct.map((product, index) => (
-                  <ProductAddDetail key={index} data={product} name={name} />
+                  <ProductAddDetail
+                    key={index}
+                    data={product}
+                    name={name}
+                    changeQuantity={changeQuantity}
+                  />
                 ))}
                 <div className="totalPrice">총 주문금액 : 1000원</div>
               </div>
