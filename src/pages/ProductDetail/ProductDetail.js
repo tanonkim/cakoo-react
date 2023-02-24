@@ -83,6 +83,7 @@ function ProductDetail() {
       ]);
     }
     setToggle(!toggle);
+    setCount(1);
   };
 
   return (
