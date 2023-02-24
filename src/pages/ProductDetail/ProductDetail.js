@@ -72,7 +72,6 @@ function ProductDetail() {
     const sizeId = event.target.id;
     const size = priceBySize[0];
     const price = priceBySize[1].split('원')[0];
-    console.log(price);
 
     if (addedProduct.map(product => product.size === size).includes(true)) {
       alert('이미 담은 상품입니다.');
@@ -121,11 +120,19 @@ function ProductDetail() {
               <div className="quantity">
                 <span className="label">수량</span>
                 <span>
-                  <button className="countBtn minusBtn" onClick={countDown}>
+                  <button
+                    className="countBtn minusBtn"
+                    type="button"
+                    onClick={countDown}
+                  >
                     -
                   </button>
                   <span>{count}</span>
-                  <button className="countBtn plusBtn" onClick={countUp}>
+                  <button
+                    className="countBtn plusBtn"
+                    type="button"
+                    onClick={countUp}
+                  >
                     +
                   </button>
                 </span>
