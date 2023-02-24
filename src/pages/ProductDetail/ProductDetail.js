@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './ProductDetail.scss';
 import API from '../../config';
 import { useParams } from 'react-router-dom';
-import * as events from 'events';
+import ProductAddDetail from './ProductAddDetail/ProductAddDetail';
 
 function ProductDetail() {
   const [product, setProduct] = useState({
@@ -28,6 +28,10 @@ function ProductDetail() {
         setProduct(result.message);
       });
   }, []);
+
+  useEffect(() => {
+    console.log(addedProduct);
+  }, [addedProduct]);
 
   const {
     base_price,
@@ -75,7 +79,7 @@ function ProductDetail() {
     } else {
       setAddedProduct([
         ...addedProduct,
-        { sizeId: sizeId, size: size, price: price },
+        { sizeId: sizeId, size: size, price: price, quantity: count },
       ]);
     }
     setToggle(!toggle);
@@ -131,16 +135,14 @@ function ProductDetail() {
                   <button className="option" type="button" onClick={handleSize}>
                     사이즈를 선택해주세요.
                   </button>
-                  <div
-                    className={toggle ? 'show' : 'hide'}
-                    onClick={changeSize}
-                  >
+                  <div className={toggle ? 'show' : 'hide'}>
                     {sizes.map(({ size_id, size, price }) => (
                       <button
                         key={size_id}
                         id={size_id}
                         className="sizeOptions"
                         type="button"
+                        onClick={changeSize}
                       >{`${size} : ${parseInt(
                         price - price * discount_rate
                       ).toLocaleString('ko-KR')}원`}</button>
@@ -148,7 +150,12 @@ function ProductDetail() {
                   </div>
                 </div>
               </div>
-              <div className="totalPrice">총 주문금액 : 1000원</div>
+              <div>
+                {addedProduct.map((product, index) => (
+                  <ProductAddDetail key={index} data={product} name={name} />
+                ))}
+                <div className="totalPrice">총 주문금액 : 1000원</div>
+              </div>
               <button className="cartButton">장바구니</button>
             </form>
           </div>

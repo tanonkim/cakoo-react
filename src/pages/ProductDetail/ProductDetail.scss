@@ -52,6 +52,11 @@
         grid-template-columns: 30% 70%;
         margin-bottom: 20px;
 
+        span {
+          display: flex;
+          align-items: center;
+        }
+
         .countBtn {
           border: none;
           border-radius: 50%;
