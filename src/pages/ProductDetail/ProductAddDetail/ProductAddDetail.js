@@ -6,6 +6,8 @@ function ProductAddDetail({ data, changeQuantity }) {
   console.log('quan : ' + quantity);
   const [newCount, setNewCount] = useState(quantity);
 
+  console.log(price, quantity, price * quantity);
+
   useEffect(() => {
     changeQuantity(sizeId, size, price, newCount);
     console.log('newCount : ' + newCount);

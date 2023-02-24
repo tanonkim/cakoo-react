@@ -163,9 +163,11 @@ function ProductDetail() {
                         className="sizeOptions"
                         type="button"
                         onClick={changeSize}
-                      >{`${size} : ${parseInt(
-                        price - price * discount_rate
-                      ).toLocaleString('ko-KR')}원`}</button>
+                      >
+                        {`${size} : ${Math.round(
+                          price - price * discount_rate
+                        )}`}
+                      </button>
                     ))}
                   </div>
                 </div>
