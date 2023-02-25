@@ -1,0 +1,41 @@
+@import '/src/styles/variables.scss';
+
+.optionBox {
+  display: flex;
+  flex-direction: column;
+  background-color: gainsboro;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .optionName {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    div:last-child {
+      font-weight: 700;
+    }
+  }
+
+  .optionNumber {
+    display: flex;
+    justify-content: space-between;
+
+    .newCountBtn {
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: gray;
+      margin-right: 10px;
+    }
+
+    .newCount {
+      margin-right: 10px;
+    }
+  }
+
+
+}
+
